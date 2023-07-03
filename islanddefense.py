@@ -177,7 +177,7 @@ async def update_messages():
     
 def get_start_end():
     dt = date.today()
-    start = dt - timedelta(days=dt.weekday() + 1)
+    start = dt - timedelta(days=dt.weekday())
     end = start + timedelta(days=6)
     return start, end
     
