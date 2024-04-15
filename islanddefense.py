@@ -127,6 +127,8 @@ async def on_message_edit(before, after):
     
 @bot.event
 async def on_message(message):
+    if bot.user.mentioned_in(message):
+        await message.channel.send("Youre not my real dad leave me alone")
     channel = message.channel
     author = message.author
     if not author.bot or author.name != 'Arcade Watcher':
@@ -186,7 +188,7 @@ def get_count(j, start):
     last = None
     for r in j['results']:
         datetime_object = datetime.strptime(r['createdAt'], '%Y-%m-%dT%H:%M:%S.%fZ').date()
-        if r['status'] == 'started' and datetime_object > start:
+        if r['status'] == 'started' and datetime_object >= start:
             count += 1
         last = datetime_object
     return count, last > start
